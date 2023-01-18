@@ -1,0 +1,114 @@
+@import 'box/kup-card-box';
+@import 'built-in/kup-card-built-in';
+@import 'collapsible/kup-card-collapsible';
+@import 'dialog/kup-card-dialog';
+@import 'free/kup-card-free';
+@import 'scalable/kup-card-scalable';
+@import 'standard/kup-card-standard';
+
+/**
+* @prop --kup-card-backdrop: Backdrop of the component when is visible.
+* @prop --kup-card-ripple-color: Sets color of ripple effect (for Material layouts).
+*/
+
+:host {
+  --kup_card_backdrop: var(--kup-card-backdrop, rgba(0, 0, 0, 0.32));
+  --kup_card_ripple_color: var(
+    --kup-card-ripple-color,
+    var(--kup-primary-color)
+  );
+
+  display: block;
+  font-size: var(--kup-font-size);
+  height: var(--kup_card_height);
+  min-height: var(--kup_card_height);
+  min-width: var(--kup_card_width);
+  outline: none;
+  position: relative;
+  width: var(--kup_card_width);
+}
+
+:host([show-modal]) {
+  #kup-component {
+    position: fixed;
+    z-index: var(--kup-card-zindex);
+    height: var(--kup_card_height);
+    width: var(--kup_card_width);
+    top: var(--kup_card_top);
+    left: var(--kup_card_left);
+    display: var(--kup_card_display, none);
+  }
+}
+
+:host([is-menu]) {
+  display: none;
+  animation: fade-in 0.25s ease-out;
+}
+
+:host([menu-visible]) {
+  box-shadow: var(--kup-box-shadow);
+  display: block;
+}
+
+#kup-component {
+  height: 100%;
+  width: 100%;
+}
+
+.backdrop {
+  background: var(--kup_card_backdrop);
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: calc(var(--kup-card-zindex) - 1);
+  display: block;
+}
+
+.mdc-ripple-surface {
+  cursor: pointer;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+  position: relative;
+
+  &:before,
+  &:after {
+    background-color: var(--kup_card_ripple_color);
+  }
+}
+
+.card-view {
+  animation: fade-in 0.25s ease-out;
+  display: none;
+  height: 100%;
+  width: 100%;
+
+  &.visible {
+    display: block;
+  }
+}
+
+.dialog-layout-7 {
+  background-color: var(--kup-background-color);
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 95vh;
+  max-width: 95vw;
+  width: 100%;
+
+  .section-1 {
+    max-height: 40vh;
+    overflow: auto;
+  }
+
+  .section-2 {
+    display: flex;
+    justify-content: center;
+  }
+}
