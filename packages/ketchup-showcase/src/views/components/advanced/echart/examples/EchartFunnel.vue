@@ -3,10 +3,12 @@
     <div class="demo-container">
       <div class="kup-container">
         <kup-echart
-          :axis.prop="axis"
-          :data.prop="singleData"
-          :types.prop="types"
-          legend="right"
+          :axis.prop = "axis"
+          :data.prop = "singleData"
+          :types.prop ="types"
+          :chartTitle.prop = "chartTitle"
+          :colors.prop = "colors"
+          :legend.prop = "legend"
       /></div>
     </div>
   </div>
@@ -20,9 +22,18 @@ export default {
       axis: 'Col1',
       types: ['Funnel'],
       singleData,
-    };
-  },
+      chartTitle:{
+        value: 'Funnel',
+        color: 'black',
+        position: 'top',
+        size: 16,
+      },
+      colors:['blue'],
+      legend:'top'
+    }
+  }
 };
+
 </script>
 
 <style scoped lang="scss">

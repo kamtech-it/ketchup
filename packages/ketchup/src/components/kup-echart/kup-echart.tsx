@@ -314,6 +314,7 @@ export class KupEchart {
     #funnelChart(){
         const x = this.#createX();
         let y = this.#createY();
+
          const   key = Object.keys(y)[0];
             y = y[key];
         let data = x.map((val, index)=>{
@@ -321,13 +322,26 @@ export class KupEchart {
 
         })
 
-        let fontSize:any = this.#setTitle();
-        fontSize = fontSize && fontSize['textStyle'] && fontSize['textStyle']['fontSize']; 
+        let chartTitle:any = this.chartTitle,
+        fontSize = this.chartTitle && this.chartTitle['size'],
+        title  = chartTitle && chartTitle['value'],
+        tooltip:any = this.#setTitle(),
+        legend:any = this.#setLegend(y);
 
-        return   {
+        // use the default fontsize
+        if(tooltip && tooltip['textStyle'] && tooltip['textStyle'] && tooltip['textStyle']['fontSize'] ){
+            delete tooltip['textStyle']['fontSize']
+        }
+
+        // set data value in legend
+        if(legend && legend['data']){
+            legend['data']=x;
+        }
+
+         let temp =  {
             title:this.#setTitle(),
+            ...tooltip,
             tooltip: {
-              ...this.#setTooltip(),
               trigger: 'item',
               formatter: '{a} <br/>{b} : {c}%'
             },
@@ -338,13 +352,10 @@ export class KupEchart {
                 saveAsImage: {}
               }
             },
-            legend: {
-              data: x            
-            },
-          
+            legend: legend,
             series: [
               {
-                name: 'Funnel',
+                name: title,
                 type: 'funnel',
                 gap: 2,
                 label: {
@@ -370,6 +381,7 @@ export class KupEchart {
               }
             ]
           } as echarts.EChartsOption;
+          return temp;
     }
 
     #createX(dataset: KupDataDataset = null) {

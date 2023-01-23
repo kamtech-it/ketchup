@@ -481,10 +481,11 @@ echart5.data = {
 
 echart6.consistencyCheck = true;
 echart6.types = ['Funnel'];
+echart6.colors = ['blue'];
 echart6.axis = 'Col1';
-echart1.chartTitle = {
-    value: 'Funnel.',
-    color: 'red',
+echart6.chartTitle = {
+    value: 'Funnel',
+    color: 'black',
     position: 'top',
     size: 16,
 };
@@ -498,14 +499,9 @@ echart6.data = {
     
         {
           name: 'Col4',
-          title: 'Value3',
+          title: 'Value5',
           size: '10',
-        },
-        {
-            name: 'Col4',
-            title: 'Value4',
-            size: '10',
-          }
+        }
       ],
       rows: [
         {
