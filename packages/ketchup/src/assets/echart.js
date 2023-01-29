@@ -485,7 +485,7 @@ echart6.colors = ['blue'];
 echart6.axis = 'Col1';
 echart6.chartTitle = {
     value: 'Funnel',
-    color: 'black',
+    color: 'red',
     position: 'top',
     size: 16,
 };
@@ -569,7 +569,7 @@ echart6.data = {
             },
           },
           id: '2',
-        },
+        }
       ],
 };
 document.addEventListener('kup-echart-click', (e) => {
